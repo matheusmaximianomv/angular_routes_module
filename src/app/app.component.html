@@ -1,0 +1,42 @@
+<mat-toolbar color="primary">
+  <span routerLink="">Routes</span>
+  <span class="spacer"></span>
+  <button
+    type="button"
+    matRipple
+    routerLink="home"
+    routerLinkActive="selected"
+  >
+    Home
+  </button>
+  <button
+    type="button"
+    matRipple
+    routerLink="courses"
+    routerLinkActive="selected"
+    [routerLinkActiveOptions]="{ exact: true }"
+    [queryParams]="{ page: 1 }"
+  >
+    Courses
+  </button>
+  <!-- <button
+    type="button"
+    matRipple
+    [routerLink]="['courses', idCourse.value]"
+    routerLinkActive="selected"
+  >
+    Specify Course
+  </button> -->
+</mat-toolbar>
+<main class="container">
+  <div class="mg-btm">
+    <!-- <p>Id do Curso</p>
+    <input
+      type="text"
+      name="idCourse"
+      id="idCourse"
+      #idCourse
+    /> -->
+  </div>
+  <router-outlet></router-outlet>
+</main>
