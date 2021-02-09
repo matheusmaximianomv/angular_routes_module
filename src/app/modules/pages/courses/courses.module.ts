@@ -9,12 +9,20 @@ import { CoursesDetailsComponent } from './courses-details/courses-details.compo
 import { CoursesNotFoundComponent } from './courses-not-found/courses-not-found.component';
 
 @NgModule({
-  declarations: [CoursesComponent, CoursesDetailsComponent, CoursesNotFoundComponent],
+  declarations: [
+    CoursesComponent,
+    CoursesDetailsComponent,
+    CoursesNotFoundComponent
+  ],
   imports: [
     CommonModule,
     RouterModule,
     MatCardModule,
   ],
-  exports: [CoursesComponent, CoursesDetailsComponent]
+  exports: [
+    CoursesComponent,
+    CoursesDetailsComponent,
+    CoursesNotFoundComponent
+  ]
 })
 export class CoursesModule { }

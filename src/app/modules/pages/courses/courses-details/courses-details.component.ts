@@ -41,7 +41,7 @@ export class CoursesDetailsComponent implements OnInit, OnDestroy {
         this.course = data;
 
         if (!this.course) {
-          this.router.navigate['courses/not-found']
+          this.router.navigate(['courses/not-found']);
         }
       });
 
