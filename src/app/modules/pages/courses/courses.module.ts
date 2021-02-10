@@ -22,8 +22,6 @@ import { CoursesNotFoundComponent } from './courses-not-found/courses-not-found.
   ],
   exports: [
     CoursesComponent,
-    CoursesDetailsComponent,
-    CoursesNotFoundComponent
   ]
 })
 export class CoursesModule { }

@@ -10,7 +10,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatRippleModule } from '@angular/material/core';
 
-import { LoginModule, HomeModule, CoursesModule } from './modules';
+import {
+  LoginModule,
+  HomeModule,
+  CoursesModule,
+  StudentsModule,
+} from './modules';
 
 @NgModule({
   declarations: [
@@ -27,6 +32,7 @@ import { LoginModule, HomeModule, CoursesModule } from './modules';
     LoginModule,
     HomeModule,
     CoursesModule,
+    StudentsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
