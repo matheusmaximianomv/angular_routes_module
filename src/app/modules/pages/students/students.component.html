@@ -1,2 +1,23 @@
-<h1>{{ nameComponent }}</h1>
-<router-outlet></router-outlet>
+<main>
+  <section>
+    <mat-card
+      class="student-card"
+      *ngFor="let student of students"
+      [routerLink]="['/students', student.id]"
+      >
+        {{ student.name }}
+    </mat-card>
+    <button
+      class="btn-create-student"
+      mat-raised-button
+      color="primary"
+      (click)="onNavigateToCreateStudent()"
+    >
+      Adicionar Aluno
+    </button>
+  </section>
+  <section>
+    <router-outlet></router-outlet>
+  </section>
+</main>
+

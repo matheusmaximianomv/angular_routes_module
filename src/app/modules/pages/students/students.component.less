@@ -1,0 +1,44 @@
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  section {
+    width: 100%;
+
+    &:first-child {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .student-card {
+      margin: 0 auto 2vh;
+      width: 40vw;
+
+      color: #3F51B5;
+      font-weight: 600;
+
+      cursor: pointer;
+
+      &:hover {
+        color: #FFFFFF;
+        background: #3F51B5;
+      }
+
+      &:active {
+        color: #FFFFFF;
+        background: rgb(31, 39, 88);
+      }
+    }
+
+    .btn-create-student {
+      width: 40vw;
+      margin: 0 auto;
+    }
+  }
+}
+

@@ -1,15 +1,125 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
+
+import { StudentsService } from 'src/app/core';
+
+interface IRouteParams {
+  id: number;
+}
+
+enum Mode {
+  edit,
+  create,
+}
 
 @Component({
   selector: 'app-students-form',
   templateUrl: './students-form.component.html',
   styleUrls: ['./students-form.component.less']
 })
-export class StudentsFormComponent implements OnInit {
+export class StudentsFormComponent
+  implements OnInit, OnDestroy {
 
-  constructor() { }
+  public id!: number;
+  public nameInput!: string;
+  public emailInput!: string;
 
-  public ngOnInit(): void {
+  public mode!: Mode;
+
+  private subscriptions: Array<Subscription> = [];
+
+  constructor(
+    private readonly studentsService: StudentsService,
+    private readonly route: ActivatedRoute,
+    private readonly router: Router
+  ) { }
+
+  private getStudentById(id: number): void {
+    this.studentsService
+      .show(+id)
+      .pipe(take(1))
+      .subscribe(
+        (response) => {
+          if (
+            response &&
+            response.id &&
+            response.email &&
+            response.name
+          ) {
+            const { id, email, name } = response;
+
+            this.id = id;
+            this.emailInput = email;
+            this.nameInput = name;
+          } else {
+            this.router.navigate(['students']);
+          }
+        }
+      );
   }
 
+  private getParams(): void {
+    const subscription = this.route.params.subscribe(
+      (params: IRouteParams) => {
+        const { id } = params;
+
+        if (id) {
+          this.id = id;
+          this.mode = Mode.edit;
+
+          this.getStudentById(this.id);
+        } else {
+          this.mode = Mode.create;
+        }
+      }
+    );
+
+    this.subscriptions.push(subscription);
+  }
+
+  public onNavigateToViewStudent(): void {
+    this.router.navigate(['students', this.id]);
+  }
+
+  public onCreateStudent(): void {
+    if (this.nameInput && this.emailInput) {
+      this.studentsService
+        .store(this.nameInput, this.emailInput)
+        .pipe(take(1))
+        .subscribe(
+          () => {
+            this.router.navigate(['students']);
+          }
+        );
+    }
+  }
+
+  public onUpdateStudent(): void {
+    if (this.nameInput && this.emailInput) {
+      this.studentsService
+        .update(+this.id, this.nameInput, this.emailInput)
+        .pipe(take(1))
+        .subscribe(
+          (response) => {
+            if (
+              response &&
+              response.email &&
+              response.name
+            ) {
+              this.router.navigate(['students', this.id]);
+            }
+          }
+        );
+    }
+  }
+
+  public ngOnInit(): void {
+    this.getParams();
+  }
+
+  public ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
 }

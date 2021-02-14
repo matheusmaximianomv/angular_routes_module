@@ -1,1 +1,49 @@
-<p>students-form works!</p>
+<h3>
+  {{ mode ? 'Criar' : 'Editar' }} Aluno
+</h3>
+
+<div class="form-student">
+  <mat-form-field class="example-full-width" *ngIf="!mode">
+    <mat-label>ID do Aluno</mat-label>
+    <input
+      disabled
+      matInput
+      [value]="id"
+    />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Nome do Aluno:</mat-label>
+    <input matInput placeholder="Digite seu nome" [(ngModel)]="nameInput" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Email:</mat-label>
+    <input matInput placeholder="Digite seu email" [(ngModel)]="emailInput" />
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="onCreateStudent()"
+    *ngIf="mode"
+  >
+    Criar
+  </button>
+
+  <div class="form-student-actions" *ngIf="!mode">
+    <button
+      mat-raised-button
+      color="default"
+      (click)="onNavigateToViewStudent()"
+    >
+      Voltar
+    </button>
+
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="onUpdateStudent()"
+    >
+      Salvar
+    </button>
+  </div>
+</div>

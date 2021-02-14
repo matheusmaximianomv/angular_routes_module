@@ -10,7 +10,7 @@ const routesStudents: Routes = [
     path: 'students',
     component: StudentsComponent,
     children: [
-      { path: 'novo', component: StudentsFormComponent },
+      { path: 'new', component: StudentsFormComponent },
       { path: ':id', component: StudentsDetailsComponent },
       { path: ':id/edit', component: StudentsFormComponent },
     ],

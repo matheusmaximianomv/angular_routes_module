@@ -1,1 +1,38 @@
-<p>students-details works!</p>
+<h3>Informações sobre o aluno.</h3>
+
+<article class="info-student">
+  <mat-form-field class="example-full-width">
+    <mat-label>ID do Aluno</mat-label>
+    <input
+      disabled
+      matInput
+      [value]="student.id"
+    />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Aluno</mat-label>
+    <input
+      disabled
+      matInput
+      [value]="student.name"
+    />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Email</mat-label>
+    <input
+      disabled
+      matInput
+      [value]="student.email"
+    />
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="onNavigateToEditStudent()"
+  >
+    Editar
+  </button>
+</article>
