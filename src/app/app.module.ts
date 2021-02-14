@@ -13,8 +13,6 @@ import { MatRippleModule } from '@angular/material/core';
 import {
   LoginModule,
   HomeModule,
-  CoursesModule,
-  StudentsModule,
 } from './modules';
 
 @NgModule({
@@ -31,8 +29,6 @@ import {
     MatRippleModule,
     LoginModule,
     HomeModule,
-    CoursesModule,
-    StudentsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
