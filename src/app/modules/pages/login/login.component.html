@@ -1,1 +1,15 @@
-<p>login works!</p>
+<h1>Login</h1>
+
+<form class="form-login">
+  <mat-form-field class="field">
+    <mat-label>Email</mat-label>
+    <input type="email" matInput name="email" [(ngModel)]="user.email" autocomplete="off" />
+  </mat-form-field>
+  <mat-form-field class="field">
+    <mat-label>Password</mat-label>
+    <input type="password" matInput name="password" [(ngModel)]="user.password" />
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="onAuthentication()">
+    Entrar
+  </button>
+</form>
