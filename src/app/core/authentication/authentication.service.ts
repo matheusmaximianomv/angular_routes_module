@@ -40,4 +40,8 @@ export class AuthenticationService {
 
         return of();
     }
+
+    public isAuthenticated(): boolean {
+        return this.userAuthenticated;
+    }
 }
