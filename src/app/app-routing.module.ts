@@ -7,11 +7,16 @@ import {
 } from 'src/app/modules';
 
 import {
-  AuthGuard
+  AuthGuard,
+  SkipLoginGuard,
 } from 'src/app/core';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  {
+    path: '',
+    component: LoginComponent,
+    canActivate: [SkipLoginGuard],
+  },
   {
     path: 'home',
     component: HomeComponent,
