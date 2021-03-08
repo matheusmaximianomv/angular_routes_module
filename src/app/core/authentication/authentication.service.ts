@@ -27,6 +27,8 @@ export class AuthenticationService {
         if (userExists && userExists.password === password) {
             this.userAuthenticated = true;
 
+            localStorage.setItem('@token', JSON.stringify({ email, password }));
+
             this.displayNavBarEmitter.emit(true);
 
             this.router.navigate(['/home']);
@@ -42,6 +44,14 @@ export class AuthenticationService {
     }
 
     public isAuthenticated(): boolean {
-        return this.userAuthenticated;
+        const token = localStorage.getItem('@token');
+
+        if (token) {
+            this.displayNavBarEmitter.emit(true);
+
+            return true;
+        }
+
+        return false;
     }
 }

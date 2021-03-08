@@ -36,6 +36,14 @@ export class StudentsFormComponent
     private readonly router: Router
   ) { }
 
+  public get completedForm(): boolean {
+    if (this.nameInput && this.emailInput) {
+      return !!this.nameInput.length && !!this.emailInput.length;
+    }
+
+    return false;
+  }
+
   private getStudentById(id: number): void {
     this.studentsService
       .show(+id)
@@ -48,7 +56,7 @@ export class StudentsFormComponent
             response.email &&
             response.name
           ) {
-            const { id, email, name } = response;
+            const { email, name } = response;
 
             this.id = id;
             this.emailInput = email;

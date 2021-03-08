@@ -11,7 +11,7 @@ import {
 } from 'rxjs';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 
 export class StudentsGuard implements CanActivateChild {
@@ -22,7 +22,7 @@ export class StudentsGuard implements CanActivateChild {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,
   ): Observable<boolean> {
-    return of(false);
+    return of(true);
   }
 
 }
