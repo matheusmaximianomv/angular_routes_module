@@ -28,7 +28,6 @@ import { StudentsDetailsComponent } from './students-details/students-details.co
   ],
   exports: [
     StudentsComponent,
-    StudentsFormComponent,
   ],
 })
 export class StudentsModule { }

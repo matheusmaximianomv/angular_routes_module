@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 
 import { StudentsService } from 'src/app/core';
+import { IFormCanDeactive } from 'src/app/shared';
 
 interface IRouteParams {
   id: number;
@@ -20,7 +21,7 @@ enum Mode {
   styleUrls: ['./students-form.component.less']
 })
 export class StudentsFormComponent
-  implements OnInit, OnDestroy {
+  implements OnInit, OnDestroy, IFormCanDeactive {
 
   public id!: number;
   public nameInput!: string;
@@ -35,14 +36,6 @@ export class StudentsFormComponent
     private readonly route: ActivatedRoute,
     private readonly router: Router
   ) { }
-
-  public get completedForm(): boolean {
-    if (this.nameInput && this.emailInput) {
-      return !!this.nameInput.length && !!this.emailInput.length;
-    }
-
-    return false;
-  }
 
   private getStudentById(id: number): void {
     this.studentsService
@@ -121,6 +114,14 @@ export class StudentsFormComponent
           }
         );
     }
+  }
+
+  public completedForm(): boolean {
+    if (this.nameInput && this.emailInput) {
+      return !!this.nameInput.length && !!this.emailInput.length;
+    }
+
+    return false;
   }
 
   public ngOnInit(): void {

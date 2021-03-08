@@ -7,22 +7,22 @@ import {
 
 import { Observable, of } from 'rxjs';
 
-import { StudentsFormComponent } from 'src/app/modules';
+import { IFormCanDeactive } from 'src/app/shared';
 
 @Injectable({
     providedIn: 'root',
 })
 
-export class StudentsFormGuard implements CanDeactivate<StudentsFormComponent> {
+export class StudentsFormGuard implements CanDeactivate<IFormCanDeactive> {
 
     constructor() { }
 
     public canDeactivate(
-        component: StudentsFormComponent,
+        component: IFormCanDeactive,
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot,
     ): Observable<boolean> {
-        if (component.completedForm) {
+        if (component.completedForm()) {
             const userConfirm = confirm('Deseja realmente seguir sem salvar?');
 
             return of(userConfirm);
