@@ -5,7 +5,11 @@ import { StudentsComponent } from './students.component';
 import { StudentsDetailsComponent } from './students-details/students-details.component';
 import { StudentsFormComponent } from './students-form/students-form.component';
 
-import { StudentsGuard, StudentsFormGuard } from 'src/app/core';
+import {
+  StudentsGuard,
+  StudentsFormGuard,
+  StudentsDetailsResolver,
+} from 'src/app/core';
 
 const routesStudents: Routes = [
   {
@@ -20,7 +24,10 @@ const routesStudents: Routes = [
       },
       {
         path: ':id',
-        component: StudentsDetailsComponent
+        component: StudentsDetailsComponent,
+        resolve: {
+          student: StudentsDetailsResolver,
+        },
       },
       {
         path: ':id/edit',
