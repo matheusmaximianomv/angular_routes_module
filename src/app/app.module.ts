@@ -13,6 +13,7 @@ import { MatRippleModule } from '@angular/material/core';
 import {
   LoginModule,
   HomeModule,
+  NotFoundModule,
 } from './modules';
 
 @NgModule({
@@ -29,6 +30,7 @@ import {
     MatRippleModule,
     LoginModule,
     HomeModule,
+    NotFoundModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

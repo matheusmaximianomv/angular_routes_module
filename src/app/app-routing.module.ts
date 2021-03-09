@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {
   LoginComponent,
   HomeComponent,
+  NotFoundComponent
 } from 'src/app/modules';
 
 import {
@@ -14,6 +15,11 @@ import {
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
+  {
+    path: 'login',
     component: LoginComponent,
     canActivate: [SkipLoginGuard],
   },
@@ -33,7 +39,13 @@ const routes: Routes = [
     path: 'students',
     loadChildren: './modules/pages/students/students.module#StudentsModule',
     canActivate: [AuthGuard],
-    canLoad: [AuthGuard]
+    canLoad: [AuthGuard],
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
   }
 ];
 
