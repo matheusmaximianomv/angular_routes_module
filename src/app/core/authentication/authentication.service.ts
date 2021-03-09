@@ -52,6 +52,8 @@ export class AuthenticationService {
             return true;
         }
 
+        this.displayNavBarEmitter.emit(false);
+
         return false;
     }
 }

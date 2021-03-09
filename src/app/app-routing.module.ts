@@ -20,17 +20,20 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard]
   },
   {
     path: 'courses',
     loadChildren: './modules/pages/courses/courses.module#CoursesModule',
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard]
   },
   {
     path: 'students',
     loadChildren: './modules/pages/students/students.module#StudentsModule',
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard]
   }
 ];
 
