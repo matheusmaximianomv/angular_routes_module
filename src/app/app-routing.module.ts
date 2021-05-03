@@ -42,6 +42,18 @@ const routes: Routes = [
     canLoad: [AuthGuard],
   },
   {
+    path: 'template-formulary',
+    loadChildren: './modules/pages/template-driven/template-driven.module#TemplateDrivenModule',
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
+  },
+  {
+    path: 'data-formulary',
+    loadChildren: './modules/pages/data-driven/data-driven.module#DataDrivenModule',
+    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
+  },
+  {
     path: '**',
     component: NotFoundComponent,
     canActivate: [AuthGuard],

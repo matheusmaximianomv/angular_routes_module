@@ -1,4 +1,4 @@
-<mat-toolbar 
+<mat-toolbar
   color="primary"
   *ngIf="displayNavBar"
 >
@@ -30,6 +30,24 @@
     [routerLinkActiveOptions]="{ exact: true }"
   >
     Students
+  </button>
+  <button
+    type="button"
+    matRipple
+    routerLink="template-formulary"
+    routerLinkActive="selected"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    Template Driven
+  </button>
+  <button
+    type="button"
+    matRipple
+    routerLink="data-formulary"
+    routerLinkActive="selected"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    Data Driven
   </button>
   <!-- <button
     type="button"
