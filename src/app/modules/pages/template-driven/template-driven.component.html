@@ -8,15 +8,18 @@
       placeholder="Seu nome"
       name="name"
       [ngModel]="initialValues.name"
+      required
     />
   </mat-form-field>
   <mat-form-field appearance="fill">
-    <mat-label>Email  </mat-label>
+    <mat-label>Email</mat-label>
     <input
       matInput
       placeholder="pat@example.com"
       name="email"
       [ngModel]="initialValues.email"
+      email
+      required
     />
   </mat-form-field>
 
