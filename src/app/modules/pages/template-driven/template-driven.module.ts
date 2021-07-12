@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { TemplateDrivenComponent } from './template-driven.component';
 import { TemplateDrivenRoutingModule } from './template-drive-routing.module';
@@ -16,6 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    FormsModule,
   ]
 })
 export class TemplateDrivenModule { }

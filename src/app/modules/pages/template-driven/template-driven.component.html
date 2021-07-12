@@ -1,14 +1,30 @@
 <h1>Template Driven</h1>
 
-<form>
+<form #userForm="ngForm" (ngSubmit)="onSubmitForm(userForm)">
   <mat-form-field appearance="fill">
     <mat-label>Nome</mat-label>
-    <input matInput placeholder="pat@example.com" required>
+    <input
+      matInput
+      placeholder="Seu nome"
+      name="name"
+      ngModel
+    />
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Email  </mat-label>
-    <input matInput placeholder="pat@example.com" required>
+    <input
+      matInput
+      placeholder="pat@example.com"
+      name="email"
+      ngModel
+    />
   </mat-form-field>
 
-  <button mat-raised-button color="primary">Enviar</button>
+  <button
+    type="submit"
+    mat-raised-button
+    color="primary"
+  >
+    Enviar
+  </button>
 </form>
