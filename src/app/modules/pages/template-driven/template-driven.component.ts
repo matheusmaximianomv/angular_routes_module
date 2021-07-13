@@ -3,6 +3,22 @@ import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { take, map } from 'rxjs/operators';
 
+interface Address {
+  cep: string;
+  state: string;
+  city: string;
+  neighborhood: string;
+  street: string;
+  number?: string;
+  complement?: string;
+}
+
+interface FormData {
+  name: string;
+  email: string;
+  address: Address;
+}
+
 @Component({
   selector: 'app-template-driven',
   templateUrl: './template-driven.component.html',
@@ -14,7 +30,7 @@ export class TemplateDrivenComponent implements OnInit {
     private readonly httpClient: HttpClient,
   ) { }
 
-  public eventBlurCep(cep: string): void {
+  public eventBlurCep(cep: string, userForm: NgForm): void {
     cep = cep.replace(/\D/g, '');
 
     if (cep) {
@@ -26,11 +42,47 @@ export class TemplateDrivenComponent implements OnInit {
           .pipe(take(1), map(result => result))
           .subscribe(
             response => {
-              console.log(response);
+              const {
+                bairro: neighborhood,
+                cep: cepFormatted,
+                complemento: complement,
+                localidade: city,
+                logradouro: street,
+                uf: state,
+              } = response as any;
+
+              this.updateValuesFromAddress({
+                cep: cepFormatted,
+                city,
+                neighborhood,
+                state,
+                street,
+                complement
+              }, userForm);
             }
           );
       }
     }
+  }
+
+  private resetValuesFromAddress(userForm: NgForm): void {
+    userForm.form.patchValue({
+      address: {
+        street: null,
+        complement: null,
+        neighborhood: null,
+        city: null,
+        state: null,
+      }
+    });
+  }
+
+  private updateValuesFromAddress(address: Address, userForm: NgForm): void {
+    this.resetValuesFromAddress(userForm);
+
+    userForm.form.patchValue({
+      address
+    });
   }
 
   public onSubmitForm(userForm: NgForm): void {
