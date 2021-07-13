@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { TemplateDrivenComponent } from './template-driven.component';
 import { TemplateDrivenRoutingModule } from './template-drive-routing.module';
@@ -18,6 +19,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatButtonModule,
     FormsModule,
+    HttpClientModule,
   ]
 })
 export class TemplateDrivenModule { }

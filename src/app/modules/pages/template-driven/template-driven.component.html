@@ -46,6 +46,7 @@
           required
           ngModel
           #cep
+          (blur)="eventBlurCep($event.target.value)"
         />
 
         <mat-error *ngIf="!cep.touched && !cep.valid">
