@@ -1,35 +1,149 @@
 <h1>Template Driven</h1>
 
 <form #userForm="ngForm" (ngSubmit)="onSubmitForm(userForm)">
-  <mat-form-field appearance="fill">
-    <mat-label>Nome</mat-label>
-    <input
-      matInput
-      placeholder="Seu nome"
-      name="name"
-      required
-      ngModel
-      #name
-    />
 
-    <mat-error *ngIf="!name.touched && !name.valid">
-      O campo de nome é obrigatório.
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label>Email</mat-label>
-    <input
-      matInput
-      placeholder="pat@example.com"
-      name="email"
-      ngModel
-      email
-      required
-      #email
-    />
+  <div class="form__line form__line-one">
+    <mat-form-field appearance="fill">
+      <mat-label>Nome</mat-label>
+      <input
+        matInput
+        placeholder="Seu nome"
+        name="name"
+        required
+        ngModel
+        #name
+      />
 
-    <mat-error *ngIf="!email.valid && !email.touched">O campo de email é obrigatório</mat-error>
-  </mat-form-field>
+      <mat-error *ngIf="!name.touched && !name.valid">
+        O campo de nome é obrigatório.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        placeholder="pat@example.com"
+        name="email"
+        ngModel
+        email
+        required
+        #email
+      />
+
+      <mat-error *ngIf="!email.valid && !email.touched">O campo de email é obrigatório</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form__line form__line-two">
+    <mat-form-field appearance="fill">
+      <mat-label>CEP</mat-label>
+      <input
+        matInput
+        placeholder="Seu CEP"
+        name="cep"
+        required
+        ngModel
+        #cep
+      />
+
+      <mat-error *ngIf="!cep.touched && !cep.valid">
+        O campo de cep é obrigatório.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Estado</mat-label>
+      <input
+        matInput
+        placeholder="Seu Estado"
+        name="state"
+        ngModel
+        required
+        #state
+      />
+
+      <mat-error *ngIf="!state.valid && !state.touched">O campo de email é obrigatório</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Cidade</mat-label>
+      <input
+        matInput
+        placeholder="Sua cidade"
+        name="city"
+        ngModel
+        required
+        #city
+      />
+
+      <mat-error *ngIf="!city.valid && !city.touched">O campo de email é obrigatório</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form__line form__line-three">
+    <mat-form-field appearance="fill">
+      <mat-label>Bairro</mat-label>
+      <input
+        matInput
+        placeholder="Seu Bairro"
+        name="neighborhood"
+        required
+        ngModel
+        #neighborhood
+      />
+
+      <mat-error *ngIf="!neighborhood.touched && !neighborhood.valid">
+        O campo de bairro é obrigatório.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Logradouro</mat-label>
+      <input
+        matInput
+        placeholder="Seu logradouro"
+        name="street"
+        ngModel
+        required
+        #street
+      />
+
+      <mat-error *ngIf="!street.valid && !street.touched">O campo de logradouro é obrigatório</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Número</mat-label>
+      <input
+        matInput
+        placeholder="Seu número"
+        name="number"
+        ngModel
+        required
+        #number
+      />
+
+      <mat-error *ngIf="!number.valid && !number.touched">O campo de número é obrigatório</mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form__line form__line-four">
+    <mat-form-field appearance="fill">
+      <mat-label>Complemento</mat-label>
+      <input
+        matInput
+        placeholder="Complemento"
+        name="complement"
+        required
+        ngModel
+        #complement
+      />
+
+      <mat-error *ngIf="!complement.touched && !complement.valid">
+        O campo de bairro é obrigatório.
+      </mat-error>
+    </mat-form-field>
+  </div>
 
   <button
     type="submit"
