@@ -13,12 +13,6 @@ interface Address {
   complement?: string;
 }
 
-interface FormData {
-  name: string;
-  email: string;
-  address: Address;
-}
-
 @Component({
   selector: 'app-template-driven',
   templateUrl: './template-driven.component.html',
