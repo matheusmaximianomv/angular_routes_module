@@ -1,5 +1,7 @@
 <h1>Template Driven</h1>
 
+<!-- Lembrando que na aula anterior, foi possível contralar apenas com o css, já que o angular cria suas próprias validações -->
+
 <form #userForm="ngForm" (ngSubmit)="onSubmitForm(userForm)">
   <mat-form-field appearance="fill">
     <mat-label>Nome</mat-label>
@@ -7,9 +9,14 @@
       matInput
       placeholder="Seu nome"
       name="name"
-      [ngModel]="initialValues.name"
       required
+      ngModel
+      #name
     />
+
+    <mat-error *ngIf="!name.touched && !name.valid">
+      O campo de nome é obrigatório.
+    </mat-error>
   </mat-form-field>
   <mat-form-field appearance="fill">
     <mat-label>Email</mat-label>
@@ -17,10 +24,13 @@
       matInput
       placeholder="pat@example.com"
       name="email"
-      [ngModel]="initialValues.email"
+      ngModel
       email
       required
+      #email
     />
+
+    <mat-error *ngIf="!email.valid && !email.touched">O campo de email é obrigatório</mat-error>
   </mat-form-field>
 
   <button
