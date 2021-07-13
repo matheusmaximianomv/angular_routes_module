@@ -1,7 +1,5 @@
 <h1>Template Driven</h1>
 
-<!-- Lembrando que na aula anterior, foi possível contralar apenas com o css, já que o angular cria suas próprias validações -->
-
 <form #userForm="ngForm" (ngSubmit)="onSubmitForm(userForm)">
   <mat-form-field appearance="fill">
     <mat-label>Nome</mat-label>
@@ -37,6 +35,7 @@
     type="submit"
     mat-raised-button
     color="primary"
+    [disabled]="!userForm.valid"
   >
     Enviar
   </button>
