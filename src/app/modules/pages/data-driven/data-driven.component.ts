@@ -12,7 +12,7 @@ import {
 })
 export class DataDrivenComponent implements OnInit {
 
-  private userForm: FormGroup;
+  public userForm: FormGroup;
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -24,8 +24,8 @@ export class DataDrivenComponent implements OnInit {
 
   private initFormularyWithBuilder(): void {
     this.userForm = this.formBuilder.group({
-      name: [''],
-      email: [''],
+      name: ['', []],
+      email: ['', []],
     });
   }
 

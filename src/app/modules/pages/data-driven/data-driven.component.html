@@ -1,6 +1,6 @@
 <h1>Data  Driven</h1>
 
-<form>
+<form [formGroup]="userForm">
   <div class="form__line form__line-one">
     <mat-form-field appearance="fill">
       <mat-label>Nome</mat-label>
@@ -8,6 +8,7 @@
         matInput
         placeholder="Seu nome"
         name="name"
+        formControlName="name"
       />
 
       <!-- <mat-error *ngIf="!name.touched && !name.valid">
@@ -21,13 +22,14 @@
         matInput
         placeholder="pat@example.com"
         name="email"
+        formControlName="email"
       />
 
       <!-- <mat-error *ngIf="!email.valid && !email.touched">O campo de email é obrigatório</mat-error> -->
     </mat-form-field>
   </div>
 
-  <div class="form__model-group" ngModelGroup="address" #address="ngModelGroup">
+  <div class="form__model-group">
     <div class="form__line form__line-two">
       <mat-form-field appearance="fill">
         <mat-label>CEP</mat-label>
