@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { DataDrivenComponent } from './data-driven.component';
@@ -20,6 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatButtonModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
   ]
 })
 export class DataDrivenModule { }
