@@ -1,6 +1,9 @@
 <h1>Data  Driven</h1>
 
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+<form
+  [formGroup]="userForm"
+  (ngSubmit)="onSubmit()"
+  >
   <div class="form__line form__line-one">
     <mat-form-field appearance="fill">
       <mat-label>Nome</mat-label>
@@ -116,11 +119,21 @@
     </div>
   </div>
 
-  <button
-    type="submit"
-    mat-raised-button
-    color="primary"
-  >
-    Enviar
-  </button>
+  <div class="form__line form__line-actions">
+    <button
+      mat-raised-button
+      color="basic"
+      type="button"
+      (click)="onReset()"
+    >
+      Resetar
+    </button>
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+    >
+      Enviar
+    </button>
+  </div>
 </form>

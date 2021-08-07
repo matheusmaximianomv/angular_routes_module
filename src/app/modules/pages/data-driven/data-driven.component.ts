@@ -22,6 +22,10 @@ export class DataDrivenComponent implements OnInit {
     console.log('userForm -> ', this.userForm);
   }
 
+  public onReset(): void {
+    this.userForm.reset();
+  }
+
   private initFormularyWithBuilder(): void {
     this.userForm = this.formBuilder.group({
       name: ['', []],
