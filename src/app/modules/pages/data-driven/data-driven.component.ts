@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  FormBuilder,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-data-driven',
@@ -10,18 +14,31 @@ export class DataDrivenComponent implements OnInit {
 
   private userForm: FormGroup;
 
-  constructor() { }
+  constructor(
+    private readonly formBuilder: FormBuilder,
+  ) { }
 
   public onSubmit(): void {
     console.log('userForm -> ', this.userForm);
   }
 
-  private initFormulary(): void {
-    this.userForm = new FormGroup({});
+  private initFormularyWithBuilder(): void {
+    this.userForm = this.formBuilder.group({
+      name: [''],
+      email: [''],
+    });
+  }
+
+  private initFormularyWithInstance(): void {
+    this.userForm = new FormGroup({
+      name: new FormControl(''),
+      email: new FormControl(''),
+    });
   }
 
   public ngOnInit(): void {
-    this.initFormulary();
+    this.initFormularyWithBuilder();
+    // this.initFormularyWithInstance();
   }
 
 }
