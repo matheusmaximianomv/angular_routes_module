@@ -31,8 +31,8 @@ export class DataDrivenComponent implements OnInit {
 
   private initFormularyWithInstance(): void {
     this.userForm = new FormGroup({
-      name: new FormControl(''),
-      email: new FormControl(''),
+      name: new FormControl('', []),
+      email: new FormControl('', []),
     });
   }
 
