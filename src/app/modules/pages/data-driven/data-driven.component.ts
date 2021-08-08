@@ -24,6 +24,41 @@ export class DataDrivenComponent implements OnInit {
     this.userForm.reset();
   }
 
+  public showMessageControlError(controlName: string): boolean {
+    const control = this.userForm.get(controlName);
+
+    return !control.valid && control.touched;
+  }
+
+  public generateMessageFieldError(
+    controlName: string,
+    label?: string
+  ): string {
+    const control = this.userForm.get(controlName);
+
+    const errorsDescription: Record<string, string> = {
+      required: `O campo ${label || controlName} é obrigatório.`,
+      minlength: `
+        O campo ${label || controlName} precisa ter no mínimo
+        ${
+          control.errors.minlength && control.errors.minlength.requiredLength
+        } caracteres.
+      `,
+      maxlength: `
+        O campo ${label || controlName} precisa ter no máximo
+        ${
+          control.errors.maxlength && control.errors.maxlength.requiredLength
+        } caracteres.
+      `,
+    };
+
+    for (const key in control.errors) {
+      if (control.errors.hasOwnProperty(key) && control.touched) {
+        return errorsDescription[key];
+      }
+    }
+  }
+
   private initFormularyWithBuilder(): void {
     this.userForm = this.formBuilder.group({
       name: [
