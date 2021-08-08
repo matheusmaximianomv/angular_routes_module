@@ -3,20 +3,18 @@ import {
   FormGroup,
   FormControl,
   FormBuilder,
+  Validators,
 } from '@angular/forms';
 
 @Component({
   selector: 'app-data-driven',
   templateUrl: './data-driven.component.html',
-  styleUrls: ['./data-driven.component.less']
+  styleUrls: ['./data-driven.component.less'],
 })
 export class DataDrivenComponent implements OnInit {
-
   public userForm: FormGroup;
 
-  constructor(
-    private readonly formBuilder: FormBuilder,
-  ) { }
+  constructor(private readonly formBuilder: FormBuilder) {}
 
   public onSubmit(): void {
     console.log('userForm -> ', this.userForm);
@@ -28,15 +26,26 @@ export class DataDrivenComponent implements OnInit {
 
   private initFormularyWithBuilder(): void {
     this.userForm = this.formBuilder.group({
-      name: ['', []],
-      email: ['', []],
+      name: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(20),
+        ],
+      ],
+      email: ['', [Validators.required, Validators.email]],
     });
   }
 
   private initFormularyWithInstance(): void {
     this.userForm = new FormGroup({
-      name: new FormControl('', []),
-      email: new FormControl('', []),
+      name: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(20),
+      ]),
+      email: new FormControl('', [Validators.required, Validators.email]),
     });
   }
 
@@ -44,5 +53,4 @@ export class DataDrivenComponent implements OnInit {
     this.initFormularyWithBuilder();
     // this.initFormularyWithInstance();
   }
-
 }
