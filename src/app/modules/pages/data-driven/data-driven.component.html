@@ -34,7 +34,7 @@
     </mat-form-field>
   </div>
 
-  <div class="form__model-group">
+  <div class="form__model-group" formGroupName="address">
     <div class="form__line form__line-two">
       <mat-form-field appearance="fill">
         <mat-label>CEP</mat-label>
@@ -43,10 +43,11 @@
           placeholder="Seu CEP"
           name="cep"
           formControlName="cep"
+          (blur)="eventBlurCep()"
         />
 
-        <mat-error *ngIf="showMessageControlError('cep')">
-          {{ generateMessageFieldError('cep', 'CEP') }}
+        <mat-error *ngIf="showMessageControlError('address.cep')">
+          {{ generateMessageFieldError('address.cep', 'CEP') }}
         </mat-error>
       </mat-form-field>
 
@@ -59,8 +60,8 @@
           formControlName="state"
         />
 
-        <mat-error *ngIf="showMessageControlError('state')">
-          {{ generateMessageFieldError('state', 'Estado') }}
+        <mat-error *ngIf="showMessageControlError('address.state')">
+          {{ generateMessageFieldError('address.state', 'Estado') }}
         </mat-error>
       </mat-form-field>
 
@@ -73,8 +74,8 @@
           formControlName="city"
         />
 
-        <mat-error *ngIf="showMessageControlError('city')">
-          {{ generateMessageFieldError('city', 'Cidade') }}
+        <mat-error *ngIf="showMessageControlError('address.city')">
+          {{ generateMessageFieldError('address.city', 'Cidade') }}
         </mat-error>
       </mat-form-field>
     </div>
@@ -89,8 +90,8 @@
           formControlName="neighborhood"
         />
 
-        <mat-error *ngIf="showMessageControlError('neighborhood')">
-          {{ generateMessageFieldError('neighborhood', 'Bairro') }}
+        <mat-error *ngIf="showMessageControlError('address.neighborhood')">
+          {{ generateMessageFieldError('address.neighborhood', 'Bairro') }}
         </mat-error>
       </mat-form-field>
 
@@ -103,8 +104,8 @@
           formControlName="street"
         />
 
-        <mat-error *ngIf="showMessageControlError('street')">
-          {{ generateMessageFieldError('street', 'Logradouro') }}
+        <mat-error *ngIf="showMessageControlError('address.street')">
+          {{ generateMessageFieldError('address.street', 'Logradouro') }}
         </mat-error>
       </mat-form-field>
 
@@ -117,8 +118,8 @@
           formControlName="number"
         />
 
-        <mat-error *ngIf="showMessageControlError('number')">
-          {{ generateMessageFieldError('number', 'Número') }}
+        <mat-error *ngIf="showMessageControlError('address.number')">
+          {{ generateMessageFieldError('address.number', 'Número') }}
         </mat-error>
       </mat-form-field>
     </div>
@@ -133,8 +134,8 @@
           formControlName="complement"
         />
 
-        <mat-error *ngIf="showMessageControlError('complement')">
-          {{ generateMessageFieldError('complement', 'Complemento') }}
+        <mat-error *ngIf="showMessageControlError('address.complement')">
+          {{ generateMessageFieldError('address.complement', 'Complemento') }}
         </mat-error>
       </mat-form-field>
     </div>
