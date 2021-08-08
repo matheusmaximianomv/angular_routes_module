@@ -70,6 +70,13 @@ export class DataDrivenComponent implements OnInit {
         ],
       ],
       email: ['', [Validators.required, Validators.email]],
+      cep: ['', [Validators.required]],
+      state: ['', [Validators.required]],
+      city: ['', [Validators.required]],
+      neighborhood: ['', [Validators.required]],
+      street: ['', [Validators.required]],
+      number: ['', [Validators.required]],
+      complement: ['', [Validators.required]],
     });
   }
 
@@ -81,6 +88,13 @@ export class DataDrivenComponent implements OnInit {
         Validators.maxLength(20),
       ]),
       email: new FormControl('', [Validators.required, Validators.email]),
+      cep: new FormControl('', [Validators.required]),
+      state: new FormControl('', [Validators.required]),
+      city: new FormControl('', [Validators.required]),
+      neighborhood: new FormControl('', [Validators.required]),
+      street: new FormControl('', [Validators.required]),
+      number: new FormControl('', [Validators.required]),
+      complement: new FormControl('', [Validators.required]),
     });
   }
 

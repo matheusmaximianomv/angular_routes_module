@@ -42,11 +42,12 @@
           matInput
           placeholder="Seu CEP"
           name="cep"
+          formControlName="cep"
         />
 
-        <!-- <mat-error *ngIf="!cep.touched && !cep.valid">
-          O campo de cep é obrigatório.
-        </mat-error> -->
+        <mat-error *ngIf="showMessageControlError('cep')">
+          {{ generateMessageFieldError('cep', 'CEP') }}
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
@@ -55,9 +56,12 @@
           matInput
           placeholder="Seu Estado"
           name="state"
+          formControlName="state"
         />
 
-        <!-- <mat-error *ngIf="!state.valid && !state.touched">O campo de email é obrigatório</mat-error> -->
+        <mat-error *ngIf="showMessageControlError('state')">
+          {{ generateMessageFieldError('state', 'Estado') }}
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
@@ -66,9 +70,12 @@
           matInput
           placeholder="Sua cidade"
           name="city"
+          formControlName="city"
         />
 
-        <!-- <mat-error *ngIf="!city.valid && !city.touched">O campo de email é obrigatório</mat-error> -->
+        <mat-error *ngIf="showMessageControlError('city')">
+          {{ generateMessageFieldError('city', 'Cidade') }}
+        </mat-error>
       </mat-form-field>
     </div>
 
@@ -79,11 +86,12 @@
           matInput
           placeholder="Seu Bairro"
           name="neighborhood"
+          formControlName="neighborhood"
         />
 
-        <!-- <mat-error *ngIf="!neighborhood.touched && !neighborhood.valid">
-          O campo de bairro é obrigatório.
-        </mat-error> -->
+        <mat-error *ngIf="showMessageControlError('neighborhood')">
+          {{ generateMessageFieldError('neighborhood', 'Bairro') }}
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
@@ -92,9 +100,12 @@
           matInput
           placeholder="Seu logradouro"
           name="street"
+          formControlName="street"
         />
 
-        <!-- <mat-error *ngIf="!street.valid && !street.touched">O campo de logradouro é obrigatório</mat-error> -->
+        <mat-error *ngIf="showMessageControlError('street')">
+          {{ generateMessageFieldError('street', 'Logradouro') }}
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
@@ -103,9 +114,12 @@
           matInput
           placeholder="Seu número"
           name="number"
+          formControlName="number"
         />
 
-        <!-- <mat-error *ngIf="!number.valid && !number.touched">O campo de número é obrigatório</mat-error> -->
+        <mat-error *ngIf="showMessageControlError('number')">
+          {{ generateMessageFieldError('number', 'Número') }}
+        </mat-error>
       </mat-form-field>
     </div>
 
@@ -116,7 +130,12 @@
           matInput
           placeholder="Complemento"
           name="complement"
+          formControlName="complement"
         />
+
+        <mat-error *ngIf="showMessageControlError('complement')">
+          {{ generateMessageFieldError('complement', 'Complemento') }}
+        </mat-error>
       </mat-form-field>
     </div>
   </div>
