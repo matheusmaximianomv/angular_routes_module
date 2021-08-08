@@ -45,7 +45,11 @@ export class DataDrivenComponent implements OnInit {
   ) {}
 
   public onSubmit(): void {
-    console.log('userForm -> ', this.userForm);
+    if (this.userForm.valid) {
+      console.log('userForm -> ', this.userForm);
+    } else {
+      this.verifyValidationsForm(this.userForm);
+    }
   }
 
   public onReset(): void {
@@ -122,6 +126,18 @@ export class DataDrivenComponent implements OnInit {
         street: street || '',
         complement: complement || '',
       },
+    });
+  }
+
+  private verifyValidationsForm(formGroup: FormGroup): void {
+    Object.keys(formGroup.controls).forEach((controlName) => {
+      const control = formGroup.get(controlName);
+      control.markAsDirty();
+      control.markAsTouched();
+
+      if (control instanceof FormGroup) {
+        this.verifyValidationsForm(control);
+      }
     });
   }
 
