@@ -33,19 +33,25 @@ form {
   justify-content: space-evenly;
 }
 
-.form__line-one {
+.form__line-one-item {
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+.form__line-two-items {
   mat-form-field {
     width: 48%;
   }
 }
 
-.form__line-two {
+.form__line-three-items {
   mat-form-field {
     width: 30%;
   }
 }
 
-.form__line-three {
+.form__line-three-items-right {
   mat-form-field {
     &:nth-child(1) {
       width: 40%;
@@ -58,12 +64,6 @@ form {
     &:nth-child(3) {
       width: 10%;
     }
-  }
-}
-
-.form__line-four {
-  mat-form-field {
-    width: 100%;
   }
 }
 

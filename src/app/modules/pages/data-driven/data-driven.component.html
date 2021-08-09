@@ -1,7 +1,7 @@
 <h1>Data Driven</h1>
 
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-  <div class="form__line form__line-one">
+  <div class="form__line form__line-two-items">
     <mat-form-field appearance="fill">
       <mat-label>Nome</mat-label>
       <input
@@ -32,7 +32,7 @@
   </div>
 
   <div class="form__model-group" formGroupName="address">
-    <div class="form__line form__line-two">
+    <div class="form__line form__line-three-items">
       <mat-form-field appearance="fill">
         <mat-label>CEP</mat-label>
         <input
@@ -94,7 +94,7 @@
       </mat-form-field>
     </div>
 
-    <div class="form__line form__line-three">
+    <div class="form__line form__line-three-items-right">
       <mat-form-field appearance="fill">
         <mat-label>Bairro</mat-label>
         <input
@@ -138,7 +138,7 @@
       </mat-form-field>
     </div>
 
-    <div class="form__line form__line-four">
+    <div class="form__line form__line-one-item">
       <mat-form-field appearance="fill">
         <mat-label>Complemento</mat-label>
         <input
@@ -155,7 +155,7 @@
     </div>
   </div>
 
-  <div class="form__line form__line-four form__line-spacing-mt">
+  <div class="form__line form__line-two-items form__line-spacing-mt">
     <mat-form-field appearance="fill">
       <mat-label>Cargo</mat-label>
       <mat-select
@@ -172,6 +172,25 @@
 
       <mat-error *ngIf="showMessageControlError('position')">
         {{ generateMessageFieldError('position', 'Cargo') }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Tecnologias</mat-label>
+      <mat-select
+        formControlName="technologies"
+        multiple
+      >
+        <mat-option
+          *ngFor="let tech of techOptions"
+          [value]="tech"
+        >
+          {{ tech }}
+        </mat-option>
+      </mat-select>
+
+      <mat-error *ngIf="showMessageControlError('technologies')">
+        {{ generateMessageFieldError('technologies', 'Tecnologias') }}
       </mat-error>
     </mat-form-field>
   </div>

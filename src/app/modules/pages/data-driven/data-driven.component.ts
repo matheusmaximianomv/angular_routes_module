@@ -15,7 +15,8 @@ import {
 } from 'src/app/shared/models';
 import {
   LocationService,
-  PositionsService
+  PositionsService,
+  TechnologiesService
 } from 'src/app/core/services';
 
 @Component({
@@ -28,11 +29,13 @@ export class DataDrivenComponent implements OnInit {
 
   public stateOptions: Observable<Array<IStates>>;
   public positionOptions: Array<IPosition>;
+  public techOptions: Array<string>;
 
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly locationService: LocationService,
-    private readonly positionService: PositionsService
+    private readonly positionService: PositionsService,
+    private readonly techService: TechnologiesService,
   ) { }
 
   public onSubmit(): void {
@@ -157,6 +160,7 @@ export class DataDrivenComponent implements OnInit {
         complement: ['', [Validators.required]],
       }),
       position: [{} as IPosition, [Validators.required]],
+      technologies: [[] as Array<string>, [Validators.required]],
     });
   }
 
@@ -178,6 +182,7 @@ export class DataDrivenComponent implements OnInit {
         complement: new FormControl('', [Validators.required]),
       }),
       position: new FormControl({} as IPosition, [Validators.required]),
+      technologies: new FormControl([] as Array<string>, [Validators.required]),
     });
   }
 
@@ -191,6 +196,16 @@ export class DataDrivenComponent implements OnInit {
           this.positionOptions = response;
         } else {
           this.positionOptions = [];
+        }
+      });
+
+    this.techService.getTechnologies()
+      .pipe(take(1))
+      .subscribe(response => {
+        if (Array.isArray(response) && response.length) {
+          this.techOptions = response;
+        } else {
+          this.techOptions = [];
         }
       });
   }
