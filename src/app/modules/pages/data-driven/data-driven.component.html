@@ -155,6 +155,27 @@
     </div>
   </div>
 
+  <div class="form__line form__line-four form__line-spacing-mt">
+    <mat-form-field appearance="fill">
+      <mat-label>Cargo</mat-label>
+      <mat-select
+        formControlName="position"
+        [compareWith]="compareWithFromSelectPosition"
+      >
+        <mat-option
+          *ngFor="let position of positionOptions"
+          [value]="position"
+        >
+          {{ position.description }}
+        </mat-option>
+      </mat-select>
+
+      <mat-error *ngIf="showMessageControlError('position')">
+        {{ generateMessageFieldError('position', 'Cargo') }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+
   <div class="form__line form__line-actions">
     <button mat-raised-button color="basic" type="button" (click)="onReset()">
       Resetar

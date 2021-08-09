@@ -11,8 +11,12 @@ import { take } from 'rxjs/operators';
 import {
   IAddress,
   IStates,
+  IPosition,
 } from 'src/app/shared/models';
-import { LocationService } from 'src/app/core/services';
+import {
+  LocationService,
+  PositionsService
+} from 'src/app/core/services';
 
 @Component({
   selector: 'app-data-driven',
@@ -23,10 +27,12 @@ export class DataDrivenComponent implements OnInit {
   public userForm: FormGroup;
 
   public stateOptions: Observable<Array<IStates>>;
+  public positionOptions: Array<IPosition>;
 
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly locationService: LocationService,
+    private readonly positionService: PositionsService
   ) { }
 
   public onSubmit(): void {
@@ -97,6 +103,13 @@ export class DataDrivenComponent implements OnInit {
     }
   }
 
+  public compareWithFromSelectPosition(
+    positionLeft: IPosition,
+    positionRight: IPosition,
+  ): boolean {
+    return positionLeft && positionRight && positionLeft.id === positionRight.id && positionLeft.level === positionRight.level;
+  }
+
   private setValuesFromAddress(data?: IAddress): void {
     const { street, city, complement, neighborhood, state } = data;
 
@@ -143,6 +156,7 @@ export class DataDrivenComponent implements OnInit {
         number: ['', [Validators.required]],
         complement: ['', [Validators.required]],
       }),
+      position: [{} as IPosition, [Validators.required]],
     });
   }
 
@@ -163,17 +177,28 @@ export class DataDrivenComponent implements OnInit {
         number: new FormControl('', [Validators.required]),
         complement: new FormControl('', [Validators.required]),
       }),
+      position: new FormControl({} as IPosition, [Validators.required]),
     });
   }
 
-  private initStatesOptions(): void {
+  private initSelectsOptions(): void {
     this.stateOptions = this.locationService.getStatesFromBrazillian();
+
+    this.positionService.getPositions()
+      .pipe(take(1))
+      .subscribe(response => {
+        if (Array.isArray(response) && response.length) {
+          this.positionOptions = response;
+        } else {
+          this.positionOptions = [];
+        }
+      });
   }
 
   public ngOnInit(): void {
     this.initFormularyWithBuilder();
     // this.initFormularyWithInstance();
 
-    this.initStatesOptions();
+    this.initSelectsOptions();
   }
 }
