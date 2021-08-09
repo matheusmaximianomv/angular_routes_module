@@ -5,10 +5,14 @@ import {
   FormBuilder,
   Validators,
 } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 
-import { IAddress, IViaCEPAddress } from 'src/app/shared/models';
+import {
+  IAddress,
+  IStates,
+} from 'src/app/shared/models';
+import { LocationService } from 'src/app/core/services';
 
 @Component({
   selector: 'app-data-driven',
@@ -18,10 +22,12 @@ import { IAddress, IViaCEPAddress } from 'src/app/shared/models';
 export class DataDrivenComponent implements OnInit {
   public userForm: FormGroup;
 
+  public stateOptions: Observable<Array<IStates>>;
+
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly httpClient: HttpClient
-  ) {}
+    private readonly locationService: LocationService,
+  ) { }
 
   public onSubmit(): void {
     if (this.userForm.valid) {
@@ -43,10 +49,9 @@ export class DataDrivenComponent implements OnInit {
 
       this.setValuesFromAddress({} as IAddress);
       if (cepPattern.test(cep)) {
-        this.httpClient
-          .get(`//viacep.com.br/ws/${cep}/json`)
+        this.locationService.getInfoByZipCode(cep)
           .pipe(take(1))
-          .subscribe((response: IViaCEPAddress) => {
+          .subscribe((response) => {
             this.setValuesFromAddress({
               city: response.localidade,
               complement: response.complemento,
@@ -75,14 +80,12 @@ export class DataDrivenComponent implements OnInit {
       required: `O campo ${label || controlName} é obrigatório.`,
       minlength: `
         O campo ${label || controlName} precisa ter no mínimo
-        ${
-          control.errors.minlength && control.errors.minlength.requiredLength
+        ${control.errors.minlength && control.errors.minlength.requiredLength
         } caracteres.
       `,
       maxlength: `
         O campo ${label || controlName} precisa ter no máximo
-        ${
-          control.errors.maxlength && control.errors.maxlength.requiredLength
+        ${control.errors.maxlength && control.errors.maxlength.requiredLength
         } caracteres.
       `,
     };
@@ -163,8 +166,14 @@ export class DataDrivenComponent implements OnInit {
     });
   }
 
+  private initStatesOptions(): void {
+    this.stateOptions = this.locationService.getStatesFromBrazillian();
+  }
+
   public ngOnInit(): void {
     this.initFormularyWithBuilder();
     // this.initFormularyWithInstance();
+
+    this.initStatesOptions();
   }
 }
