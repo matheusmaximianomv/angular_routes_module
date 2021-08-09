@@ -8,28 +8,7 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { take } from 'rxjs/operators';
 
-interface Address {
-  cep?: string;
-  number?: string;
-  state?: string;
-  city?: string;
-  neighborhood?: string;
-  street?: string;
-  complement?: string;
-}
-
-interface ViaCEPAddress {
-  cep: string;
-  logradouro: string;
-  complemento: string;
-  bairro: string;
-  localidade: string;
-  uf: string;
-  ibge: string;
-  gia: string;
-  ddd: string;
-  siafi: string;
-}
+import { IAddress, IViaCEPAddress } from 'src/app/shared/models';
 
 @Component({
   selector: 'app-data-driven',
@@ -62,12 +41,12 @@ export class DataDrivenComponent implements OnInit {
     if (cep) {
       const cepPattern = new RegExp(/^\d{8}/);
 
-      this.setValuesFromAddress({} as Address);
+      this.setValuesFromAddress({} as IAddress);
       if (cepPattern.test(cep)) {
         this.httpClient
           .get(`//viacep.com.br/ws/${cep}/json`)
           .pipe(take(1))
-          .subscribe((response: ViaCEPAddress) => {
+          .subscribe((response: IViaCEPAddress) => {
             this.setValuesFromAddress({
               city: response.localidade,
               complement: response.complemento,
@@ -115,7 +94,7 @@ export class DataDrivenComponent implements OnInit {
     }
   }
 
-  private setValuesFromAddress(data?: Address): void {
+  private setValuesFromAddress(data?: IAddress): void {
     const { street, city, complement, neighborhood, state } = data;
 
     this.userForm.patchValue({
