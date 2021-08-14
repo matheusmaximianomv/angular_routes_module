@@ -70,12 +70,11 @@
             [value]="state.uf"
           >
             {{ state.name }}
-          </mat-option
-          >
+          </mat-option>
         </mat-select>
 
         <mat-error *ngIf="showMessageControlError('address.state')">
-          {{ generateMessageFieldError('address.state', 'Estado') }}
+          {{ generateMessageFieldError("address.state", "Estado") }}
         </mat-error>
       </mat-form-field>
 
@@ -162,37 +161,47 @@
         formControlName="position"
         [compareWith]="compareWithFromSelectPosition"
       >
-        <mat-option
-          *ngFor="let position of positionOptions"
-          [value]="position"
-        >
+        <mat-option *ngFor="let position of positionOptions" [value]="position">
           {{ position.description }}
         </mat-option>
       </mat-select>
 
       <mat-error *ngIf="showMessageControlError('position')">
-        {{ generateMessageFieldError('position', 'Cargo') }}
+        {{ generateMessageFieldError("position", "Cargo") }}
       </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Tecnologias</mat-label>
-      <mat-select
-        formControlName="technologies"
-        multiple
-      >
-        <mat-option
-          *ngFor="let tech of techOptions"
-          [value]="tech"
-        >
+      <mat-select formControlName="technologies" multiple>
+        <mat-option *ngFor="let tech of techOptions" [value]="tech">
           {{ tech }}
         </mat-option>
       </mat-select>
 
       <mat-error *ngIf="showMessageControlError('technologies')">
-        {{ generateMessageFieldError('technologies', 'Tecnologias') }}
+        {{ generateMessageFieldError("technologies", "Tecnologias") }}
       </mat-error>
     </mat-form-field>
+  </div>
+
+  <div class="form__line form__line-one-item form__line-spacing-mb">
+    <mat-radio-group formControlName="newsletter">
+      <mat-label class="form__line-spacing-mr"
+        >Deseja receber informações via email:</mat-label
+      >
+      <mat-radio-button
+        class="form__line-spacing-mr"
+        *ngFor="let option of newsletterOptions"
+        [value]="option.value"
+      >
+        {{ option.label }}
+      </mat-radio-button>
+
+      <mat-error *ngIf="showMessageControlError('newsletter')">
+        {{ generateMessageFieldError("newsletter", "Campo de mensagem") }}
+      </mat-error>
+    </mat-radio-group>
   </div>
 
   <div class="form__line form__line-actions">

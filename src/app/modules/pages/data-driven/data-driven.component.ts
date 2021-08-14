@@ -19,6 +19,11 @@ import {
   TechnologiesService
 } from 'src/app/core/services';
 
+interface IInputRadioOptions {
+  label: string;
+  value: string | boolean;
+}
+
 @Component({
   selector: 'app-data-driven',
   templateUrl: './data-driven.component.html',
@@ -30,6 +35,17 @@ export class DataDrivenComponent implements OnInit {
   public stateOptions: Observable<Array<IStates>>;
   public positionOptions: Array<IPosition>;
   public techOptions: Array<string>;
+
+  public newsletterOptions: Array<IInputRadioOptions> = [
+    {
+      label: 'Sim',
+      value: true,
+    },
+    {
+      label: 'Não',
+      value: false,
+    }
+  ];
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -159,8 +175,9 @@ export class DataDrivenComponent implements OnInit {
         number: ['', [Validators.required]],
         complement: ['', [Validators.required]],
       }),
-      position: [{} as IPosition, [Validators.required]],
+      position: [null, [Validators.required]],
       technologies: [[] as Array<string>, [Validators.required]],
+      newsletter: [true, [Validators.required]]
     });
   }
 
@@ -183,6 +200,7 @@ export class DataDrivenComponent implements OnInit {
       }),
       position: new FormControl({} as IPosition, [Validators.required]),
       technologies: new FormControl([] as Array<string>, [Validators.required]),
+      newsletter: new FormControl(true, [Validators.required])                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ,
     });
   }
 
