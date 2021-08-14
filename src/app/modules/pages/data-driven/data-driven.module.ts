@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [DataDrivenComponent],
@@ -23,6 +24,7 @@ import { MatRadioModule } from '@angular/material/radio';
     ReactiveFormsModule,
     MatSelectModule,
     MatRadioModule,
+    MatCheckboxModule,
   ],
 })
 export class DataDrivenModule { }

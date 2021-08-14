@@ -198,10 +198,17 @@
         {{ option.label }}
       </mat-radio-button>
 
-      <mat-error *ngIf="showMessageControlError('newsletter')">
+      <mat-error class="font-error" *ngIf="showMessageControlError('newsletter')">
         {{ generateMessageFieldError("newsletter", "Campo de mensagem") }}
       </mat-error>
     </mat-radio-group>
+  </div>
+
+  <div class="form__line form__line-spacing-mb form__line-terms">
+    <mat-checkbox formControlName="terms">Aceito os termos</mat-checkbox>
+    <mat-error class="font-error" *ngIf="showMessageControlError('terms')">
+      {{ generateMessageFieldError("terms", "Termo") }}
+    </mat-error>
   </div>
 
   <div class="form__line form__line-actions">

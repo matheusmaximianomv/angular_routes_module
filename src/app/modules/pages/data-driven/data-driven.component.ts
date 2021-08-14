@@ -177,7 +177,8 @@ export class DataDrivenComponent implements OnInit {
       }),
       position: [null, [Validators.required]],
       technologies: [[] as Array<string>, [Validators.required]],
-      newsletter: [true, [Validators.required]]
+      newsletter: [true, [Validators.required]],
+      terms: [null, [Validators.required]],
     });
   }
 
@@ -200,7 +201,8 @@ export class DataDrivenComponent implements OnInit {
       }),
       position: new FormControl({} as IPosition, [Validators.required]),
       technologies: new FormControl([] as Array<string>, [Validators.required]),
-      newsletter: new FormControl(true, [Validators.required])                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ,
+      newsletter: new FormControl(true, [Validators.required]),
+      terms: new FormControl(null, [Validators.required]),
     });
   }
 
